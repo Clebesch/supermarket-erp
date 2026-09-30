@@ -9,7 +9,6 @@ env.*.local
 # Build
 .dist/
 .Build/
-
 # Logs
 *.Log
 
