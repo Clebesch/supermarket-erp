@@ -8,22 +8,25 @@
 -Node.js
 -PostgredSQL
 -Prisma
+-Rest API
+-Docker
 
-## 📦 Módulos
+## 📦 Funcionalidades
 
--Dashboards
--Produtos
--Estoques
--Clientes
--Fornecedores
--Compras
--Vendas
--Caixa
+-Dashboards 
+-Cadastro de Produtos
+-Controle de Estoques
+-Cadastro de Clientes
+-Cadastro de Fornecedores
+-controle de Compras
+-Controle de Vendas
+-PDV
+-Controle de Caixa
 -Relatórios
--Autenticação
+-Autenticação e Permições
 
 ## 👨‍💻 Projeto
-Projeto desenvolvido o qual mostra conhecimentos em desenvolvimento Full Stack, banco de dados, APIs REST e arquitetura de aplicações web.
+Projeto desenvolvido ao qual demostra conhecimentos em desenvolvimento Full Stack, TypeScript, React, APIs REST, banco de dados e regras de negócio.
 
 
 
