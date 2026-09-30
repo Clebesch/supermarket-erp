@@ -30,5 +30,3 @@ Projeto desenvolvido ao qual demostra conhecimentos em desenvolvimento Full Stac
 
 
 
-
-
