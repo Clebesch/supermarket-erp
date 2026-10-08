@@ -1,26 +1,24 @@
-# Dependências
+﻿# Dependências
 node_modules/
 
 # Variáveis de ambiente
 .env
-.env.local
 env.*.local
 
 # Build
-.dist/
-.Build/
+backend/dist/
+
 # Logs
-*.Log
+*.log
 
 # Sistema operacional
 .DS_Store
 Thumbs.db
 
 # IDE
-.vscode/*
-!.vscode/exetensions.json
+.vscode/
+!.vscode/extensions.json
 
 # Prisma
-Prisma/*.db
-Prisma/*.db-journal
-
+backend/prisma/*.db
+backend/prisma/*.db-journal

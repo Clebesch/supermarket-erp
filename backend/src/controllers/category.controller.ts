@@ -10,18 +10,24 @@ export async function createCategoryController(
 ) {
   try {
     const { name } = request.body;
-
-    if (!name) {
+	
+	if (!name || typeof name !== "string" || !name.trim()) {
       return response.status(400).json({
-        message: "O nome da categoria é obrigatório.",
-      });
-    }
+    message: "O nome da categoria é obrigatório.",
+  });
+}
 
-    const category = await createCategory(name);
+    const category = await createCategory(name.trim());
 
     return response.status(201).json(category);
-  } catch (error) {
+  } catch (error: any) {
     console.error(error);
+
+    if (error?.code === "P2002") {
+      return response.status(409).json({
+		message: "Já existe uma categoria com este nome.",
+      });
+}
 
     return response.status(500).json({
       message: "Erro ao criar categoria.",

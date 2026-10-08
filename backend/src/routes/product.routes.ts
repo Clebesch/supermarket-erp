@@ -8,15 +8,30 @@ import {
   deleteProductController,
 } from "../controllers/product.controller.js";
 
+import {
+  createProductSchema,
+  updateProductSchema,
+} from "../schemas/product.schema.js";
+
+import { validate } from "../middlewares/validate.js";
+
 const productRouter = Router();
 
-productRouter.get("/:id", getProductByIdController);
-
-productRouter.post("/", createProductController);
+productRouter.post(
+  "/",
+  validate(createProductSchema),
+  createProductController,
+);
 
 productRouter.get("/", getProductsController);
 
-productRouter.put("/:id", updateProductController);
+productRouter.get("/:id", getProductByIdController);
+
+productRouter.put(
+  "/:id",
+  validate(updateProductSchema),
+  updateProductController,
+);
 
 productRouter.delete("/:id", deleteProductController);
 

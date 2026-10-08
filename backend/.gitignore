@@ -1,5 +1,14 @@
-node_modules
-# Keep environment variables out of version control
+﻿# Dependências
+node_modules/
+
+# Variáveis de ambiente
 .env
 
-/src/generated/prisma
+# Prisma Client gerado
+src/generated/prisma/
+
+# Build
+dist/
+
+# Arquivos auxiliares de agentes
+/.agents/

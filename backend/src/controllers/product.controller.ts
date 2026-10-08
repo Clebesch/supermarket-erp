@@ -50,11 +50,7 @@ export async function createProductController(
 
     return response.status(201).json(product);
   } catch (error) {
-    console.error(error);
-
-    return response.status(500).json({
-      message: "Erro ao criar produto.",
-    });
+	   throw error;
   }
 }
 
