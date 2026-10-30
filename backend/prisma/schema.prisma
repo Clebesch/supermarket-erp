@@ -31,6 +31,7 @@ model Product {
   category    Category @relation(fields: [categoryId], references: [id])
   stockMovements StockMovement[]
   purchaseItems PurchaseItem[]
+  saleItems SaleItem[]
 }
 
 model StockMovement {
@@ -57,6 +58,7 @@ model Customer {
   active    Boolean  @default(true)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  sales     Sale[]
 }
 
 model Supplier {
@@ -80,8 +82,8 @@ model Purchase {
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 
-  supplier Supplier       @relation(fields: [supplierId], references: [id])
-  items    PurchaseItem[]
+  supplier   Supplier @relation(fields: [supplierId], references: [id])
+  items      PurchaseItem[]
 }
 
 model PurchaseItem {
@@ -94,4 +96,50 @@ model PurchaseItem {
 
   purchase Purchase @relation(fields: [purchaseId], references: [id])
   product  Product  @relation(fields: [productId], references: [id])
+}
+
+model Sale {
+  id         Int      @id @default(autoincrement())
+  customerId Int?
+  status     String   @default("COMPLETED")
+  total      Decimal  @db.Decimal(10, 2)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  customer Customer?  @relation(fields: [customerId], references: [id])
+  items    SaleItem[]
+}
+
+model SaleItem {
+  id        Int     @id @default(autoincrement())
+  saleId    Int
+  productId Int
+  quantity  Int
+  unitPrice Decimal @db.Decimal(10, 2)
+  subtotal  Decimal @db.Decimal(10, 2)
+
+  sale    Sale    @relation(fields: [saleId], references: [id])
+  product Product @relation(fields: [productId], references: [id])
+}
+
+model CashRegister {
+  id             Int       @id @default(autoincrement())
+  status         String    @default("OPEN")
+  openingBalance Decimal   @db.Decimal(10, 2)
+  closingBalance Decimal?  @db.Decimal(10, 2)
+  openedAt       DateTime  @default(now())
+  closedAt       DateTime?
+
+  movements CashMovement[]
+}
+
+model CashMovement {
+  id             Int      @id @default(autoincrement())
+  type           String
+  amount         Decimal  @db.Decimal(10, 2)
+  reason         String?
+  createdAt      DateTime @default(now())
+  cashRegisterId Int
+
+  cashRegister CashRegister @relation(fields: [cashRegisterId],references: [id])
 }
